@@ -10,6 +10,30 @@
 </head>
 
 <body>
+    <!-- Modal de preferecias del usuario -->
+    <dialog id="preferences" style="display: none;">
+        <h2>User preferences</h2>
+
+        <div class="opt">
+            <input type="checkbox" name="format-json" id="format-json">
+            <label for="format-json">Format JSON</label>
+        </div>
+
+        <div class="opt">
+            <input type="checkbox" name="showDateTime" id="showDateTime">
+            <label for="showDateTime">Show time</label>
+        </div>
+
+        <div class="opt">
+            <input type="checkbox" checked name="autoScroll" id="autoScroll">
+            <label for="autoScroll">Auto Scroll</label>
+        </div>
+
+        <div class="buttons">
+            <button id="save">Save</button>
+        </div>
+    </dialog>
+
     <!-- Muestra la version de esta aplicación -->
     <span id="clientversion">Client: waiting...</span>
 
@@ -25,10 +49,12 @@
         <span id="servversion">Server: waiting...</span>
     </div>
 
-    <div>
+    <div class="buttons">
         <button id="clear">Clear</button>
+        <button id="config">Config</button>
     </div>
 </body>
 <!-- importamos el documento donde hacemos manejamos los eventos -->
 <script src="./client.js" defer type="module"></script>
+
 </html>

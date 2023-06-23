@@ -9,7 +9,7 @@ from flask_cors import CORS
 with open('config.json', 'r') as file:
     dataApp = json.loads(file.read())
     
-SECRET_SEED = "MiseriDevSeed"
+SECRET_SEED = "MiseriDevSeed" # Secreto de prueba, eliminar en produccion
 
 # Crear una instancia de Flask
 app = Flask(__name__)
@@ -21,27 +21,19 @@ sio = socketio.Server(cors_allowed_origins='*')
 # Definir el evento de conexión
 @sio.on('connect')
 def connect(sid, environ, token):
-    
     try:
         jwt.decode(token["token"], SECRET_SEED, algorithms=["HS256"])
     except:
-        sio.emit('log', "Invalid token, your connection is about to be closed.", to=sid)
-        sio.disconnect(sid, None,True)
-        return
-    
+        sio.emit('forbidden', {"message":"Invalid token, your connection is about to be closed."})
+        sio.disconnect(sid)
+        
+    print('A new user logged in:', environ['REMOTE_ADDR'])
     sio.emit('servversion', dataApp["version"], to=sid)
 
 # Definir el evento de desconexión
 @sio.on('disconnect')
 def disconnect(sid):
-    print('Cliente desconectado:', sid)
-
-# Definir un evento personalizado
-@sio.on('my_event')
-def my_event(sid, data):
-    print('Evento personalizado recibido:', data)
-    sio.emit('my_response', {'response': 'Respuesta del servidor'}, room=sid)
-
+    print('A user has disconnected')
 
 # Adjuntar la aplicación Flask al servidor Socket.IO
 app = socketio.WSGIApp(sio, app)

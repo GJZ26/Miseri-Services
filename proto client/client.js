@@ -1,6 +1,13 @@
 import dataApp from "./manifest.json" assert {type: 'json'}
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZGV2In0.93fVYOMMwzMUI4druQmCtNLQtjgJUufNHTJqsJXtSkU" // Token de autenticación, solo test
+const confButton = document.getElementById("config")
+const saveButton = document.getElementById("save")
+const jsonCheck = document.getElementById("format-json")
+const timeStamp = document.getElementById("showDateTime")
+const dialogBox = document.getElementById("preferences")
+const autoScroll = document.getElementById("autoScroll")
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZGV2In0.93fVYOMMwzMUI4druQmCtNLQtjgJUufNHTJqsJXtSkU" // Token de autenticación de prueba
 
 
 // Crear una instancia del cliente Socket.IO
@@ -26,16 +33,36 @@ socket.on('disconnect', () => {
 });
 
 socket.on('log',(data)=>{
+    if (typeof(data)==="object"){
+        data = JSON.stringify(data,null,4)
+        if(jsonCheck.checked) data = data.replace(/\n/g, "<br>").replace(/\t/g, "&nbsp;").replace(/ /g, "&nbsp;")
+    }
     print(data)
 })
 
+
+// MIS COSAS, NI LO LEAS xd
+
 function print(text) {
     const chat = document.getElementById("output")
+    if(timeStamp.checked){
+        let date = new Date()
+        chat.innerHTML += `[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}]: ` 
+    }
     chat.innerHTML += `${text}<br>`
-    console.log(chat.scrollTo(0,chat.scrollHeight))
+
+    if(autoScroll.checked) chat.scrollTo(0,chat.scrollHeight)
 }
 
+confButton.onclick = () => {
+    dialogBox.showModal()
+    dialogBox.style.display = "block"
+}
 
+saveButton.onclick = () => {
+    dialogBox.close()
+    dialogBox.style.display = "none"
+}
 
 document.getElementById("clientversion").textContent = `Client: ${dataApp["version"]}`
 document.getElementById("clear").onclick = () => {document.getElementById("output").innerHTML=""}
