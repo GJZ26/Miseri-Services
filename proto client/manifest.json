@@ -1,0 +1,6 @@
+{
+    "version":"1.0.0-dev",
+    "protocol":"http",
+    "host":"192.168.1.64",
+    "port":"5000"
+}

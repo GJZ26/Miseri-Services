@@ -1,25 +1,23 @@
-import serial
-import json
 import os
+import serial
+import time
 
-# Configurar la comunicación serial
-puerto = '/dev/ttyUSB0'  # Especifica el puerto serial correcto
-baudios = 115200
+# Configuración de los puertos
+puertoProduccion = '/dev/ttyUSB0'
+puertoDevelopment = 'COM3'
 
-# Iniciar la conexión serial
-ser = serial.Serial(puerto, baudios)
+# Serial Rate
+incomingRate = 115200
+
+try:
+    incomingConn = serial.Serial(puertoDevelopment, incomingRate)
+except:
+    print(f'Impossible to reach incoming connection to ESP32 on port {puertoDevelopment} at {incomingRate} rate')
 
 try:
     while True:
-        if ser.in_waiting > 0:
-            # Leer una línea de datos del monitor serial
-            linea = ser.readline().decode().strip()
-            data = json.loads(linea)
-            os.system("clear")
-            print(f'Temperatura: {data["temperature"]:.2f}°C')
-            print(f'Humedad: {data["humidity"]}%')
-            print(f'Concentración de Gases: {data["gas_level"]["percent"]}%')
-            print(f'Nivel de luz: {data["light_level"]["percent"]}%')
+        pass
 except KeyboardInterrupt:
-    # Cerrar la conexión serial al finalizar
-    ser.close()
+    pass
+
+incomingConn.close()

@@ -1,0 +1,87 @@
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+code {
+    font-size: 15px;
+    padding: 5px;
+    width: 80%;
+    height: 70%;
+    background-color: black;
+    color: white;
+    overflow-y: scroll;
+    text-overflow: clip;
+    max-height: 450px;
+    margin: 5px;
+    cursor: not-allowed;
+}
+
+code::selection{
+    background-color: black;
+    color: white;
+}
+
+div.versions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+}
+
+span {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+dialog {
+    position: absolute;
+}
+
+code::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+code::-webkit-scrollbar:vertical {
+    width:4px;
+}
+
+code:hover::-webkit-scrollbar:vertical {
+    width:6px;
+}
+
+code::-webkit-scrollbar-button:increment,code::-webkit-scrollbar-button {
+    display: none;
+} 
+
+code::-webkit-scrollbar:horizontal {
+    height: 7px;
+}
+
+code::-webkit-scrollbar-thumb {
+    background-color: #393939;
+    border-radius: 20px;
+    border: none;
+}
+
+code:hover::-webkit-scrollbar-thumb {
+    background-color: #6e6e6e;
+    border-radius: 20px;
+    border: none;
+}
+
+code::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}

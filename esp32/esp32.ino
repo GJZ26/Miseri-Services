@@ -9,6 +9,7 @@ DHTesp dht;
 
 void setup() 
 {
+  
   // Configuración Salida Serial Rate
   Serial.begin(115200);
 
@@ -43,7 +44,7 @@ void loop() {
 
   // Json -> String
   serializeJson(data,dataParsed);
-  Serial.println(dataParsed);
+  //Serial.println(dataParsed);
 
   delay(1000);
 }
