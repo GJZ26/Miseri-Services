@@ -24,3 +24,5 @@ A continuación, una tabla con la relación componente-carpeta:
 ## Diagrama
 
 ![Diagrama de componentes](diagrams/Miseri-Diagram_bb.jpg)
+
+![Digrama de redes y comunicaciones](/diagrams/Miseri%20Network%20and%20Communication%20Diagram.png)

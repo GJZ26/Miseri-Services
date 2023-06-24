@@ -1,11 +1,20 @@
 #include <ArduinoJson.h>
 #include <DHTesp.h>
 
-#define GasSensor 2
-#define PhotoResistor 4
-#define TempHumSensor 5
+#define version "2.2.1-dev"
 
-DHTesp dht;
+#define GasSensor 2
+#define AirQualitySensor 14
+
+#define PhotoResistorA 4
+#define PhotoResistorB 26
+
+#define TempHumSensorA 5
+#define TempHumSensorB 27
+
+
+DHTesp dhtA;
+DHTesp dhtB;
 
 void setup() 
 {
@@ -14,37 +23,55 @@ void setup()
   Serial.begin(115200);
 
   // Configuración libreria DHT
-  dht.setup(TempHumSensor, DHTesp::DHT11);
+  dhtA.setup(TempHumSensorA, DHTesp::DHT11);
+  dhtB.setup(TempHumSensorB, DHTesp::DHT11);
 
 }
 
 void loop() {
 
   /* CONFIGURACION SERIALIZADOR JSON */
-  StaticJsonDocument<200> data;
+  StaticJsonDocument<300> data;
   String dataParsed;
-
-  /* LECTURA FOTORESISTOR */
-  int rawPhotoResistor = analogRead(PhotoResistor);
-  int PhotoResistorPercent = (rawPhotoResistor * 100)/4095;
 
   /* DETECCION DE GAS */
   int rawGasSensor = analogRead(GasSensor);
 
+  /* AIR QUALITY SENSOR */
+  int rawAirQuality = analogRead(AirQualitySensor);
+
+  /* LECTURA FOTORESISTOR */
+  int rawPhotoResistorA = analogRead(PhotoResistorA);
+  int PhotoResistorPercentA = (rawPhotoResistorA * 100)/4095;
+
+  int rawPhotoResistorB = analogRead(PhotoResistorB);
+  int PhotoResistorPercentB = (rawPhotoResistorB * 100)/4095;
+
+
   /* TEMPERATURA Y HUMEDAD */
-  TempAndHumidity rawTempHum = dht.getTempAndHumidity();
+  TempAndHumidity rawTempHumA = dhtA.getTempAndHumidity();
+  TempAndHumidity rawTempHumB = dhtB.getTempAndHumidity();
 
   // Guardando en Json
-  data["temperature"] = float(rawTempHum.temperature);
-  data["humidity"] = int(rawTempHum.humidity);
-  data["light_level"]["raw"] = rawPhotoResistor;
-  data["light_level"]["percent"] = PhotoResistorPercent;
-  data["gas_level"]["raw"] = rawGasSensor;
-  data["gas_level"]["percent"] = (rawGasSensor* 100)/4095;
+  data["version"] = version;
+
+  data["air"]["gas_raw"] = rawGasSensor;
+  data["air"]["quality_raw"] = rawAirQuality;
+
+  data["light_sensor_a"]["raw"] = rawPhotoResistorA;
+  data["light_sensor_a"]["percent"] = PhotoResistorPercentA;
+  data["light_sensor_b"]["raw"] = rawPhotoResistorB;
+  data["light_sensor_b"]["percent"] = PhotoResistorPercentB;
+
+  data["hum_temp_a"]["temperature"] = float(rawTempHumA.temperature);
+  data["hum_temp_a"]["humidity"] = int(rawTempHumA.humidity);
+
+  data["hum_temp_b"]["temperature"] = float(rawTempHumB.temperature);
+  data["hum_temp_b"]["humidity"] = int(rawTempHumB.humidity);
 
   // Json -> String
   serializeJson(data,dataParsed);
-  //Serial.println(dataParsed);
+  Serial.println(dataParsed);
 
   delay(1000);
 }
