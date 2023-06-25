@@ -1,7 +1,7 @@
 #include <ArduinoJson.h>
 #include <DHTesp.h>
 
-#define version "2.2.1-dev"
+#define version "2.3.0-dev"
 
 #define GasSensor 2
 #define AirQualitySensor 14
@@ -55,8 +55,8 @@ void loop() {
   // Guardando en Json
   data["version"] = version;
 
-  data["air"]["gas_raw"] = rawGasSensor;
-  data["air"]["quality_raw"] = rawAirQuality;
+  data["air"]["gas_ppm"] = float(rawGasSensor * 1000) / 4025;
+  data["air"]["co_ppm"] = float(rawAirQuality * 1000) / 4025;
 
   data["light_sensor_a"]["raw"] = rawPhotoResistorA;
   data["light_sensor_a"]["percent"] = PhotoResistorPercentA;
