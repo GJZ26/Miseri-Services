@@ -1,0 +1,46 @@
+{
+    "version": "3.2.0-dev",
+    "reconnexion": {
+        "attempts_limit": 5,
+        "delay": 1
+    },
+    "database": {
+        "URI": "",
+        "port": 0,
+        "name": null
+    },
+    "local_http_server": {
+        "host": "127.0.0.1",
+        "port": 80
+    },
+    "local_ws_server": {
+        "host": "127.0.0.1",
+        "port": 80
+    },
+    "remote_http_server": {
+        "host": "127.0.0.1",
+        "port": 80,
+        "token":""
+    },
+    "remote_ws_server": {
+        "host": "127.0.0.1",
+        "port": 80,
+        "token":""
+    },
+    "data": {
+        "sample_time": 10,
+        "save_time": 30
+    },
+    "sensors": {
+        "dual_temp_sensor": true,
+        "dual_light_sensor": true
+    },
+    "phycal_alarms": {
+        "max_gas_ppm": 800,
+        "max_co_ppm": 900
+    },
+    "hostpot": {
+        "ssid": "miseri_sense",
+        "password": "changeme"
+    }
+}

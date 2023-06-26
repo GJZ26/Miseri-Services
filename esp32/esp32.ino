@@ -20,7 +20,7 @@ void setup()
 {
   
   // Configuración Salida Serial Rate
-  Serial.begin(115200);
+  Serial.begin(74880);
 
   // Configuración libreria DHT
   dhtA.setup(TempHumSensorA, DHTesp::DHT11);

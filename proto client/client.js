@@ -40,6 +40,7 @@ socket.on('log',(data)=>{
     print(data)
 })
 
+socket.emit("data","Hola mundo")
 
 // MIS COSAS, NI LO LEAS xd
 
