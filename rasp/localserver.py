@@ -6,6 +6,8 @@ import json
 from flask import Flask
 from flask_cors import CORS
 
+users = []
+
 with open('config.json', 'r') as file:
     dataApp = json.loads(file.read())
     
@@ -21,6 +23,7 @@ sio = socketio.Server(cors_allowed_origins='*')
 # Definir el evento de conexión
 @sio.on('connect')
 def connect(sid, environ, token):
+    global users
     # try:
     #     jwt.decode(token["token"], SECRET_SEED, algorithms=["HS256"])
     # except:
@@ -29,6 +32,7 @@ def connect(sid, environ, token):
         
     print('A new user logged in:', environ['REMOTE_ADDR'])
     sio.emit('servversion', dataApp["version"], to=sid)
+    users.append(sid)
 
 # Definir el evento de desconexión
 @sio.on('disconnect')
@@ -37,7 +41,10 @@ def disconnect(sid):
 
 @sio.on('data')
 def data(ssid, data):
+    global users
     print(data)
+    for i in users:
+        sio.emit('log',data,to=i)
     
 
 # Adjuntar la aplicación Flask al servidor Socket.IO

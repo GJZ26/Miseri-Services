@@ -55,7 +55,7 @@ class Receiver:
         try:
             if self.serialConnection.in_waiting > 0:
                 return json.loads(
-                    self.serialConnection.readline(self.serialConnection.inWaiting())
+                    self.serialConnection.readline()
                     .decode()
                     .strip()
                 )

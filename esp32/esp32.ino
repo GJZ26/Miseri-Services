@@ -12,7 +12,6 @@
 #define TempHumSensorA 5
 #define TempHumSensorB 27
 
-
 DHTesp dhtA;
 DHTesp dhtB;
 
@@ -20,7 +19,7 @@ void setup()
 {
   
   // Configuración Salida Serial Rate
-  Serial.begin(74880);
+  Serial.begin(115200);
 
   // Configuración libreria DHT
   dhtA.setup(TempHumSensorA, DHTesp::DHT11);
@@ -55,8 +54,8 @@ void loop() {
   // Guardando en Json
   data["version"] = version;
 
-  data["air"]["gas_ppm"] = float(rawGasSensor * 1000) / 4025;
-  data["air"]["co_ppm"] = float(rawAirQuality * 1000) / 4025;
+  data["air"]["gas_ppm"] = float(rawGasSensor * 1023.0) / 4025;
+  data["air"]["co_ppm"] = float(rawAirQuality * 1023.0) / 4025;
 
   data["light_sensor_a"]["raw"] = rawPhotoResistorA;
   data["light_sensor_a"]["percent"] = PhotoResistorPercentA;

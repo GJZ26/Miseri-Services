@@ -1,26 +1,30 @@
 import receiver
+import json
 import socketio
 
-# sio = socketio.Client()
+sio = socketio.Client()
+sio.connect("http://localhost:5000")
+
+# Configurar la comunicación serial
+puerto = 'COM3'  # Especifica el puerto serial correcto
+baudios = 115200
 
 def setup():
-    global espReader#, sio
-    # sio.connect("http://localhost:5000")
-    espReader = receiver.Receiver(74880,"COM3")
-    espReader.setup()
-    espReader.connect()
-
+    global reader
+    reader = receiver.Receiver(baudios,puerto)
+    reader.connect()
+    
 def loop():
-    global espReader
-    lectura = espReader.readSerial()
-    if lectura is not None:
-        print(lectura)
+    global sio
+    linea = reader.readSerial()
+    if linea is not None:
+        print(str(linea) + ",")
+        sio.emit("data",linea)
     pass
 
 try:
     setup()
     while True:
         loop()
-        pass
 except KeyboardInterrupt:
     pass
