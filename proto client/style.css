@@ -128,6 +128,15 @@ details[open]>summary {
     transition: all 100ms;
 }
 
+details>summary p {
+    display: none;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #6e6e6e;
+    margin: 0;
+}
+
 summary {
     font-weight: bold;
     font-size: 1.8rem;
@@ -265,6 +274,14 @@ dialog div {
     padding: 10px 0;
 }
 
+dialog div h2 {
+    margin-bottom: 12px;
+}
+
+dialog div span {
+    font-size: 1.2rem;
+}
+
 dialog h1 {
     text-align: center;
     margin-bottom: 18px;
@@ -293,14 +310,46 @@ dialog::-webkit-scrollbar {
     width: 5px;
 }
 
-dialog h1 + div{
-    border-top:none
+dialog h1+div {
+    border-top: none
 }
 
-dialog h1 + h1{
-    border-top: none!important;
-    padding-top: 1px!important;
-    margin-top: 1px!important;
+dialog h1+h1 {
+    border-top: none !important;
+    padding-top: 1px !important;
+    margin-top: 1px !important;
+}
+
+dialog div span input[type=number] {
+    font-family: monospace;
+    width: 40px;
+    text-align: center;
+    border-radius: 0%;
+    border: solid 1px rgb(188, 188, 188);
+    padding: 2px 4px;
+    margin-right: 5px;
+}
+
+dialog div span input[type=number]:hover {
+    cursor: pointer;
+    border: 1px solid rgb(123, 123, 123);
+    box-shadow: 1px 1px 0px black;
+    transition: all 100ms;
+}
+
+dialog div span input[type=number]:focus {
+    cursor: pointer;
+    border: 1px solid rgb(0, 18, 92);
+    box-shadow: none;
+    transition: all 100ms;
+}
+
+dialog div span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 8px 0;
 }
 
 dialog::-webkit-scrollbar-track {
@@ -320,8 +369,38 @@ dialog:hover::-webkit-scrollbar-thumb {
     background-color: #d2d2d2;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+code+button {
+    margin: 8px 50%;
+    padding: 4px 12px;
+    text-decoration: none;
+    transform: translate(-50%, 0);
+    font-weight: bold;
+}
+
 @media (max-width:660px) {
     dialog {
         min-width: 270px;
     }
+
+    abbr {
+        display: none;
+    }
+
+    details:hover>summary p {
+        display: block;
+        color: white;
+    }
+
+    details[open]>summary p {
+        max-width: 80%;
+        display: block;
+        color: white;
+    }
+
 }
