@@ -178,6 +178,22 @@ code {
     cursor: default;
     font-size: 1.4rem;
     overflow-y: scroll;
+    line-height: 20px;
+}
+
+code strong{
+    color: white;
+    font-family: monospace;
+}
+
+code b{
+    color: greenyellow;
+    text-decoration:underline;
+}
+
+code strong::selection, code b::selection{
+    background-color: white;
+    color: black;
 }
 
 br::selection{

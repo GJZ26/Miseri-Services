@@ -3,7 +3,7 @@ import json
 import socketio
 
 sio = socketio.Client()
-sio.connect("http://localhost:5000")
+sio.connect("http://localhost:5000", namespaces=['/sensor'])
 
 # Configurar la comunicación serial
 puerto = 'COM3'  # Especifica el puerto serial correcto
@@ -19,7 +19,7 @@ def loop():
     linea = reader.readSerial()
     if linea is not None:
         print(str(linea) + ",")
-        sio.emit("data",linea)
+        sio.emit("data",linea, namespace='/sensor')
     pass
 
 try:

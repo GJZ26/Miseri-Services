@@ -133,17 +133,30 @@ function hiddenPreferences() {
     preference_modal.close()
 }
 
-function clearConsole(){
-    console_out.textContent=""
+function clearConsole() {
+    console_out.textContent = ""
 }
 
+function updateGeneralView(data) {
+    light_level_sign.textContent = `${data["light_sensor_a"]["percent"]}%`
+    celsius_tem_sign.textContent = `${(data["hum_temp_a"]["temperature"]).toFixed(2)}°C`
+    fahrenheit_tem_sign.textContent = `/ ${(data["hum_temp_a"]["temperature"] * (9 / 5) + 32).toFixed(2)}°F`
+    humidity_sign.textContent = `${data["hum_temp_a"]["humidity"]}%`
+
+    air_quality_sign.textContent = `${(data["air"]["co_ppm"]).toFixed(2)}ppm`
+    air_quality_meter.value = data["air"]["co_ppm"]
+
+    gas_presence_sign.textContent = `${(data["air"]["gas_ppm"]).toFixed(2)}ppm`
+    gas_presence_meter.value = data["air"]["gas_ppm"]
+}
 
 /*=============================================
 =             Services Functions              =
 =============================================*/
 
-
-
+function print(message) {
+    console_out.innerHTML += '<b>></b> ' + message + '<br>'
+}
 
 
 /*=============================================
@@ -165,4 +178,21 @@ clear_console_btn.onclick = clearConsole
 
 import dataApp from "./manifest.json" assert {type: 'json'}
 
-const socket = io(`${dataApp["websocket"]["protocol"]}://${dataApp["websocket"]["host"]}:${dataApp["websocket"]["port"]}/client`)
+const protocol = dataApp["websocket"]["protocol"]
+const host = dataApp["websocket"]["host"]
+const port = dataApp["websocket"]["port"]
+const namespace = dataApp["websocket"]["namespace"]
+
+const socket = io(`${protocol}://${host}:${port}/${namespace}`)
+
+socket.on('log', (data) => {
+    print(data)
+})
+
+socket.on('disconnect', () => {
+    print("Connection with the server has been lost.")
+})
+
+socket.on('data', (data) => {
+    updateGeneralView(data)
+})
