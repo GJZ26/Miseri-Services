@@ -53,7 +53,7 @@ main>h1+p {
 article {
     position: relative;
     background-color: var(--article-color);
-    min-width: 90%;
+    width: 90%;
     border-radius: 8px;
     margin: 15px 0;
     border: solid 1px black;
@@ -178,6 +178,10 @@ code {
     cursor: default;
     font-size: 1.4rem;
     overflow-y: scroll;
+}
+
+br::selection{
+    background-color: white;
 }
 
 code::selection {
@@ -342,6 +346,10 @@ dialog div span input[type=number]:focus {
     border: 1px solid rgb(0, 18, 92);
     box-shadow: none;
     transition: all 100ms;
+}
+
+dialog div span input[type=radio]{
+    margin-right: 3px;
 }
 
 dialog div span {

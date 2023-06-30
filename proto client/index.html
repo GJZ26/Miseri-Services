@@ -20,30 +20,32 @@
 
             <section>
                 <h2>Light Level</h2>
-                <p>0%</p>
+                <p id="light_level_sign">0%</p>
             </section>
 
             <section>
                 <h2>Temperature</h2>
-                <span>0 °C /</span>
-                <span>32 °F</span>
+                <span id="celsius_tem_sign">0 °C</span>
+                <span id="fahrenheit_tem_sign">/ 32 °F</span>
             </section>
 
             <section>
                 <h2>Humidity</h2>
-                <p>0%</p>
+                <p id="humidity_sign">0%</p>
             </section>
 
             <section>
                 <h2>Air Quality</h2>
-                <meter min="0" max="1000" low="10" high="1000" optimum="300" value="200">50%</meter>
-                <p>200 ppm</p>
+                <meter id="air_quality_meter" min="0" max="1000" low="10" high="1000" optimum="300"
+                    value="200">50%</meter>
+                <p id="air_quality_sign">200 ppm</p>
             </section>
 
             <section>
                 <h2>Presence of gases</h2>
-                <meter min="0" max="1000" low="10" high="100" optimum="300" value="200">50%</meter>
-                <p>200 ppm</p>
+                <meter id="gas_presence_meter" min="0" max="1000" low="10" high="1000" optimum="300"
+                    value="200">50%</meter>
+                <p id="gas_presence_sign">200 ppm</p>
             </section>
 
 
@@ -63,27 +65,27 @@
 
                     <section>
                         <h2>Media</h2>
-                        <p>0ppm</p>
+                        <p id="gas_media">0ppm</p>
                     </section>
 
                     <section>
                         <h2>Range</h2>
-                        <p>0ppm</p>
+                        <p id="gas_range">0ppm</p>
                     </section>
 
                     <section>
                         <h2>Highest record</h2>
-                        <p>0ppm</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="gas_highest">0ppm</p> <span id="gas_highest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Lowest record</h2>
-                        <p>0ppm</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="gas_lowest">0ppm</p> <span id="gas_lowest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Variation Unit</h2>
-                        <p>0.1</p>
+                        <p id="gas_variation">0.1</p>
                     </section>
 
                 </details>
@@ -101,27 +103,27 @@
 
                     <section>
                         <h2>Media</h2>
-                        <p>0ppm</p>
+                        <p id="air_media">0ppm</p>
                     </section>
 
                     <section>
                         <h2>Range</h2>
-                        <p>0ppm</p>
+                        <p id="air_range">0ppm</p>
                     </section>
 
                     <section>
                         <h2>Highest record</h2>
-                        <p>0ppm</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="air_highest">0ppm</p> <span id="air_highest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Lowest record</h2>
-                        <p>0ppm</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="air_lowest">0ppm</p> <span id="air_lowest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Variation Unit</h2>
-                        <p>0.1</p>
+                        <p id="air_variation">0.1</p>
                     </section>
 
                 </details>
@@ -134,27 +136,27 @@
 
                     <section>
                         <h2>Media</h2>
-                        <p>0°C</p>
+                        <p id="tem_media">0°C</p>
                     </section>
 
                     <section>
                         <h2>Range</h2>
-                        <p>0°C</p>
+                        <p id="tem_range">0°C</p>
                     </section>
 
                     <section>
                         <h2>Highest record</h2>
-                        <p>0°C</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="tem_highest">0°C</p> <span id="tem_highest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Lowest record</h2>
-                        <p>0°C</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="tem_lowest">0°C</p> <span id="tem_lowest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Variation Unit</h2>
-                        <p>0.1</p>
+                        <p id="tem_variation">0.1</p>
                     </section>
 
                 </details>
@@ -167,27 +169,27 @@
 
                     <section>
                         <h2>Media</h2>
-                        <p>0%</p>
+                        <p id="hum_media">0%</p>
                     </section>
 
                     <section>
                         <h2>Range</h2>
-                        <p>0%</p>
+                        <p id="hum_range">0%</p>
                     </section>
 
                     <section>
                         <h2>Highest record</h2>
-                        <p>0%</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="hum_highest">0%</p> <span id="hum_highest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Lowest record</h2>
-                        <p>0%</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="hum_lowest">0%</p> <span id="hum_lowest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Variation Unit</h2>
-                        <p>0.1</p>
+                        <p id="hum_variation">0.1</p>
                     </section>
 
                 </details>
@@ -200,27 +202,28 @@
 
                     <section>
                         <h2>Media</h2>
-                        <p>0%</p>
+                        <p id="light_media">0%</p>
                     </section>
 
                     <section>
                         <h2>Range</h2>
-                        <p>0%</p>
+                        <p id="light_range">0%</p>
                     </section>
 
                     <section>
                         <h2>Highest record</h2>
-                        <p>0%</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="light_highest">0%</p> <span id="light_highest_time">At 00:00 hours on June 24,
+                            2023</span>
                     </section>
 
                     <section>
                         <h2>Lowest record</h2>
-                        <p>0%</p> <span>At 00:00 hours on June 24, 2023</span>
+                        <p id="light_lowest">0%</p> <span id="light_lowest_time">At 00:00 hours on June 24, 2023</span>
                     </section>
 
                     <section>
                         <h2>Variation Unit</h2>
-                        <p>0.1</p>
+                        <p id="light_variation">0.1</p>
                     </section>
 
                 </details>
@@ -230,226 +233,227 @@
 
         <article>
             <h1>Log</h1>
-            <code>
+            <code id="console_log">
                 > Hi! I'm a log in console | view only. <br>
             </code>
-            <button>Clear</button>
+            <button id="clear_console_btn">Clear</button>
         </article>
 
-        <dialog>
+        <dialog id="app_info_modal">
 
             <h1>App Info</h1>
 
             <div>
                 <h2>Client Version</h2>
-                <p>0.0.0</p>
+                <p id="client_version">0.0.0</p>
             </div>
 
             <div>
                 <h2>Server Version</h2>
-                <p>0.0.0</p>
+                <p id="server_version">0.0.0</p>
             </div>
 
             <div>
                 <h2>Rasp Version</h2>
-                <p>0.0.0</p>
+                <p id="rasp_version">0.0.0</p>
             </div>
 
             <div>
                 <h2>ESP32 Version</h2>
-                <p>0.0.0</p>
+                <p id="esp_version">0.0.0</p>
             </div>
 
             <h1>Credits</h1>
             <div>
                 <h2>Firmware</h2>
-                <span>By <strong><a target="_blank" href="https://github.com/GJZ26/">Adolfo</a></strong></span> -
-                <span><a target="_blank" href="https://github.com/GJZ26/Miseri-Services">Source</a></span>
+                <span>By&nbsp;<strong><a target="_blank" href="https://github.com/GJZ26/">Adolfo</a></strong></span>
+                <span><a target="_blank" href="https://github.com/GJZ26/Miseri-Services"> Source</a></span>
             </div>
             <div>
                 <h2>Server Side Services</h2>
-                <span>By <strong><a target="_blank" href="https://github.com/ShonSagoro/">Jonathan</a></strong></span> -
+                <span>By&nbsp;<strong><a target="_blank" href="https://github.com/ShonSagoro/">Jonathan</a></strong></span>
                 <span><a target="_blank" href="https://github.com/ShonSagoro/miseri-sense-api">Source</a></span>
             </div>
             <div>
                 <h2>Design & UI/UX</h2>
-                <span>By <strong><a target="_blank"
-                            href="https://github.com/Leonardo-Toledo-V/">Leonardo</a></strong></span> - <span><a
-                        target="_blank" href="https://github.com/Leonardo-Toledo-V/miseri-client">Source</a></span>
+                <span>By&nbsp;<strong><a target="_blank" href="https://github.com/Leonardo-Toledo-V/">Leonardo</a></strong></span>
+                <span><a target="_blank" href="https://github.com/Leonardo-Toledo-V/miseri-client">Source</a></span>
             </div>
 
-            <button>Close</button>
+            <button id="close_app_info_btn">Close</button>
         </dialog>
 
-        <dialog>
+        <dialog id="preference_modal">
             <h1>Preferences</h1>
             <h1>Sensors</h1>
             <div>
                 <h2>Light sensor mode</h2>
                 <span>
-                    <input type="radio" name="light_sensor_mode" id=""> <label for="">Sensor A</label>
+                    <input type="radio" name="light_sensor_mode"> <label>Sensor A</label>
                 </span>
                 <span>
-                    <input type="radio" name="light_sensor_mode" id=""> <label for="">Sensor B</label>
+                    <input type="radio" name="light_sensor_mode"> <label>Sensor B</label>
                 </span>
                 <span>
-                    <input type="radio" name="light_sensor_mode" id=""> <label for="">Both</label>
+                    <input type="radio" name="light_sensor_mode"> <label>Both</label>
                 </span>
             </div>
             <div>
                 <h2>Temperature sensor mode</h2>
                 <span>
-                    <input type="radio" name="tem_sensor_mode" id=""> <label for="">Sensor A</label>
+                    <input type="radio" name="tem_sensor_mode"> <label>Sensor A</label>
                 </span>
                 <span>
-                    <input type="radio" name="tem_sensor_mode" id=""> <label for="">Sensor B</label>
+                    <input type="radio" name="tem_sensor_mode"> <label>Sensor B</label>
                 </span>
                 <span>
-                    <input type="radio" name="tem_sensor_mode" id=""> <label for="">Both</label>
+                    <input type="radio" name="tem_sensor_mode"> <label>Both</label>
                 </span>
             </div>
             <div>
                 <h2>Humidity sensor mode</h2>
                 <span>
-                    <input type="radio" name="hum_sensor_mode" id=""> <label for="">Sensor A</label>
+                    <input type="radio" name="hum_sensor_mode"> <label>Sensor A</label>
                 </span>
                 <span>
-                    <input type="radio" name="hum_sensor_mode" id=""> <label for="">Sensor B</label>
+                    <input type="radio" name="hum_sensor_mode"> <label>Sensor B</label>
                 </span>
                 <span>
-                    <input type="radio" name="hum_sensor_mode" id=""> <label for="">Both</label>
+                    <input type="radio" name="hum_sensor_mode"> <label>Both</label>
                 </span>
             </div>
             <h1>Measurement unit</h1>
             <div>
                 <h2>Temperature</h2>
                 <span>
-                    <input type="radio" name="tem_mess" id=""> <label for="">Celsius</label>
+                    <input type="radio" name="tem_mess"> <label>Celsius</label>
                 </span>
                 <span>
-                    <input type="radio" name="tem_mess" id=""> <label for="">Fahrenheit</label>
+                    <input type="radio" name="tem_mess"> <label>Fahrenheit</label>
                 </span>
                 <span>
-                    <input type="radio" name="tem_mess" id=""> <label for="">Both</label>
+                    <input type="radio" name="tem_mess"> <label>Both</label>
                 </span>
             </div>
             <div>
                 <h2>Air Quality</h2>
                 <span>
-                    <input type="number" name="" id=""> <label for="">Warn value (ppm)</label>
+                    <input type="number" id="air_warn_inp"> <label for="air_warn_inp">Warn value (ppm)</label>
                 </span>
                 <span>
-                    <input type="number" name="" id=""> <label for="">Alert value (ppm)</label>
+                    <input type="number" id="air_alert_inp"> <label for="air_alert_inp">Alert value (ppm)</label>
                 </span>
             </div>
             <div>
                 <h2>Presence of gas</h2>
                 <span>
-                    <input type="number" name="" id=""> <label for="">Warn value (ppm)</label>
+                    <input type="number" id="gas_warn_inp"> <label for="gas_warn_inp">Warn value (ppm)</label>
                 </span>
                 <span>
-                    <input type="number" name="" id=""> <label for="">Alert value (ppm)</label>
+                    <input type="number" id="gas_alert_inp"> <label for="gas_alert_inp">Alert value (ppm)</label>
                 </span>
             </div>
             <h1>Statistics</h1>
             <div>
                 <h2>Data calculation from</h2>
                 <span>
-                    <input type="radio" name="data_calc" id=""><label for="">Historical</label>
+                    <input type="radio" name="data_calc"> <label>Historical</label>
                 </span>
                 <span>
-                    <input type="radio" name="data_calc" id=""><label for="">Session</label>
+                    <input type="radio" name="data_calc"> <label>Session</label>
                 </span>
             </div>
             <h1>Data sampling</h1>
             <div>
                 <h2>Sampling time</h2>
                 <span>
-                    <input type="number" name="" id=""><label for=""> seg.</label </span>
+                    <input type="number" id="sampling_time"><label for="sampling_time"> seg.</label>
+                </span>
             </div>
             <div>
                 <h2>Backup time</h2>
                 <span>
-                    <input type="number" name="" id=""><label for=""> seg.</label>
+                    <input type="number" id="backup_time"><label for="backup_time"> seg.</label>
                 </span>
             </div>
             <h1>Application alerts</h1>
             <div>
                 <h2>Screen flickering</h2>
                 <span>
-                    <input type="radio" name="flick_screen" id=""><label for="">Activate</label>
+                    <input type="radio" name="flick_screen"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="flick_screen" id=""><label for="">Desactivate</label>
+                    <input type="radio" name="flick_screen"> <label>Desactivate</label>
                 </span>
             </div>
             <div>
                 <h2>Play sound</h2>
                 <span>
-                    <input type="radio" name="sound_web" id=""><label for="">Activate</label>
+                    <input type="radio" name="sound_web"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="sound_web" id=""><label for="">Desactivate</label>
+                    <input type="radio" name="sound_web"> <label>Desactivate</label>
                 </span>
             </div>
             <div>
                 <h2>Vibrate</h2>
                 <span>
-                    <input type="radio" name="vibrate" id=""><label for="">Activate</label>
+                    <input type="radio" name="vibrate"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="vibrate" id=""><label for="">Desactivate</label>
+                    <input type="radio" name="vibrate"> <label>Desactivate</label>
                 </span>
             </div>
             <h1>Device alert</h1>
             <div>
                 <h2>LED indicator</h2>
                 <span>
-                    <input type="radio" name="led" id=""><label for="">Activate</label>
+                    <input type="radio" name="led"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="led" id=""><label for="">Desactivate</label>
+                    <input type="radio" name="led"> <label>Desactivate</label>
                 </span>
             </div>
             <div>
                 <h2>Play sound</h2>
                 <span>
-                    <input type="radio" name="sound_device" id=""><label for="">Activate</label>
+                    <input type="radio" name="sound_device"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="sound_device" id=""><label for="">Desactivate</label>
+                    <input type="radio" name="sound_device"> <label>Desactivate</label>
                 </span>
             </div>
             <h1>Log Preferences</h1>
             <div>
                 <h2>Autoscroll</h2>
                 <span>
-                    <input type="radio" name="autoscroll" id=""> <label for="">Activate</label>
+                    <input type="radio" name="autoscroll"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="autoscroll" id=""> <label for="">Desactivate</label>
+                    <input type="radio" name="autoscroll"> <label>Desactivate</label>
                 </span>
             </div>
             <div>
                 <h2>Format JSON logs</h2>
                 <span>
-                    <input type="radio" name="jsonformat" id=""><label for="">Activate</label>
+                    <input type="radio" name="jsonformat"> <label>Activate</label>
                 </span>
                 <span>
-                    <input type="radio" name="jsonformat" id=""><label for="">Desactivate</label>
+                    <input type="radio" name="jsonformat"> <label>Desactivate</label>
                 </span>
             </div>
-            <button>Save and Close</button>
+            <button id="close_preference_btn">Save and Close</button>
         </dialog>
 
     </main>
 
     <footer>
         <h3>&copy; Copyright 2023, Miseri.</h3>
-        <button>App Info</button>
-        <button>Preference</button>
+        <button id="app_info_btn">App Info</button>
+        <button id="preference_btn">Preference</button>
     </footer>
 
 </body>
-
+<script src="./socket.io.min.js"></script>
+<script src="./script.js" type="module"></script>
 </html>
