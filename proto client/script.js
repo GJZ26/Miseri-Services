@@ -102,6 +102,18 @@ const air_alert_inp = document.getElementById('air_alert_inp');
 const sampling_time = document.getElementById('sampling_time');
 const backup_time = document.getElementById('backup_time');
 
+let localSettings = {
+    "light_mode": 0, //          0 - A | 1 - B          | 2 - Both
+    "tem_mode": 0, //            0 - A | 1 - B          | 2 - Both
+    "hum_mode": 0, //            0 - A | 1 - B          | 2 - Both
+    "tem_mes": 0, //       0 - Celsius | 1 - Fahrenheit | 2 - Both
+    "screen_flick": 0, // 0 - Activate | 1 - Desactivate
+    "play_sound": 0, //   0 - Activate | 1 - Desactivate
+    "vibrate": 0, //      0 - Activate | 1 - Desactivate
+    "autoscroll": 0, //   0 - Activate | 1 - Desactivate
+    "formatJSON": 0 //    0 - Activate | 1 - Desactivate|
+}
+
 /*=============================================
 =               Buttons DOM :)                =
 =============================================*/
@@ -114,7 +126,7 @@ const close_app_info_btn = document.getElementById('close_app_info_btn');
 const close_preference_btn = document.getElementById('close_preference_btn');
 
 /*=============================================
-=           Local Events Handlers             =
+=              Events Handlers                =
 =============================================*/
 
 function showAppInfo() {
@@ -130,6 +142,7 @@ function showPreferences() {
 }
 
 function hiddenPreferences() {
+    savePreferences()
     preference_modal.close()
 }
 
@@ -138,10 +151,29 @@ function clearConsole() {
 }
 
 function updateGeneralView(data) {
-    light_level_sign.textContent = `${data["light_sensor_a"]["percent"]}%`
-    celsius_tem_sign.textContent = `${(data["hum_temp_a"]["temperature"]).toFixed(2)}°C`
-    fahrenheit_tem_sign.textContent = `/ ${(data["hum_temp_a"]["temperature"] * (9 / 5) + 32).toFixed(2)}°F`
-    humidity_sign.textContent = `${data["hum_temp_a"]["humidity"]}%`
+    let temperature = 1
+    let humidity = 1
+    let light = 1
+
+    if (localSettings["tem_mode"] === 0) temperature = data["hum_temp_a"]["temperature"]
+    if (localSettings["tem_mode"] === 1) temperature = data["hum_temp_b"]["temperature"]
+    if (localSettings["tem_mode"] === 2) temperature = (data["hum_temp_a"]["temperature"] + data["hum_temp_b"]["temperature"]) / 2
+
+    if (localSettings["light_mode"] === 0) light = data["light_sensor_a"]["percent"]
+    if (localSettings["light_mode"] === 1) light = data["light_sensor_b"]["percent"]
+    if (localSettings["light_mode"] === 2) light = (data["light_sensor_a"]["percent"] + data["light_sensor_b"]["percent"]) / 2
+
+    if (localSettings["hum_mode"] === 0) humidity = data["hum_temp_a"]["humidity"]
+    if (localSettings["hum_mode"] === 1) humidity = data["hum_temp_b"]["humidity"]
+    if (localSettings["hum_mode"] === 2) humidity = (data["hum_temp_a"]["humidity"] + data["hum_temp_b"]["humidity"]) / 2
+
+    light_level_sign.textContent = `${light}%`
+
+    celsius_tem_sign.textContent = localSettings["tem_mes"] === 1 ? `${(temperature * (9 / 5) + 32).toFixed(2)}°F` : `${(temperature).toFixed(2)}°C`
+
+    fahrenheit_tem_sign.textContent = localSettings["tem_mes"] === 2 ? `/ ${(temperature * (9 / 5) + 32).toFixed(2)}°F` : ""
+
+    humidity_sign.textContent = `${humidity}%`
 
     air_quality_sign.textContent = `${(data["air"]["co_ppm"]).toFixed(2)}ppm`
     air_quality_meter.value = data["air"]["co_ppm"]
@@ -158,6 +190,41 @@ function print(message) {
     console_out.innerHTML += '<b>></b> ' + message + '<br>'
 }
 
+function savePreferences() {
+    light_sensor_mode.forEach((v, k) => { if (v.checked) localSettings["light_mode"] = k });
+    tem_sensor_mode.forEach((v, k) => { if (v.checked) localSettings["tem_mode"] = k });
+    hum_sensor_mode.forEach((v, k) => { if (v.checked) localSettings["hum_mode"] = k });
+    tem_mess.forEach((v, k) => { if (v.checked) localSettings["tem_mes"] = k });
+    flick_screen.forEach((v, k) => { if (v.checked) localSettings["screen_flick"] = k });
+    sound_web.forEach((v, k) => { if (v.checked) localSettings["play_sound"] = k });
+    vibrate.forEach((v, k) => { if (v.checked) localSettings["vibrate"] = k });
+    autoscroll.forEach((v, k) => { if (v.checked) localSettings["autoscroll"] = k });
+    jsonformat.forEach((v, k) => { if (v.checked) localSettings["formatJSON"] = k });
+    localStorage.setItem('preferences', JSON.stringify(localSettings))
+}
+
+function loadLocalPreferences() {
+    if (localStorage.getItem('preferences') !== null) localSettings = JSON.parse(localStorage.getItem('preferences'))
+
+    light_sensor_mode[localSettings["light_mode"]].checked = true;
+    tem_sensor_mode[localSettings["tem_mode"]].checked = true;
+    hum_sensor_mode[localSettings["hum_mode"]].checked = true;
+    tem_mess[localSettings["tem_mes"]].checked = true;
+    flick_screen[localSettings["screen_flick"]].checked = true;
+    sound_web[localSettings["play_sound"]].checked = true;
+    vibrate[localSettings["vibrate"]].checked = true;
+    autoscroll[localSettings["autoscroll"]].checked = true;
+    jsonformat[localSettings["formatJSON"]].checked = true;
+}
+
+function webAlert(active) {
+    if (active) {
+        document.documentElement.classList.add("alert");
+    }
+    if (!active) {
+        document.documentElement.classList.remove("alert")
+    }
+}
 
 /*=============================================
 =               EventListeners                =
@@ -182,6 +249,8 @@ const protocol = dataApp["websocket"]["protocol"]
 const host = dataApp["websocket"]["host"]
 const port = dataApp["websocket"]["port"]
 const namespace = dataApp["websocket"]["namespace"]
+
+loadLocalPreferences()
 
 const socket = io(`${protocol}://${host}:${port}/${namespace}`)
 

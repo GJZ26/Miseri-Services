@@ -105,9 +105,34 @@ section>h2 {
     font-size: 2rem;
 }
 
-meter {
-    height: 20px;
+progress {
+    -webkit-appearance: none;
+
+    height: 50px;
     width: 50%;
+}
+
+::-webkit-progress-bar {
+    /* background: rgb(25, 255, 41); */
+    background: linear-gradient(90deg,
+            white 0%,
+            black 100%);
+    /* background: linear-gradient(90deg,
+            rgba(25, 255, 41, 1) 0%,
+            rgba(255, 253, 50, 1) 33%,
+            rgba(255, 50, 50, 1) 61%); */
+}
+
+::-webkit-progress-value {
+    background-color: transparent;
+    border-right: solid 4px rgb(255, 255, 255);
+    box-shadow: 1px 1px 8px black;
+}
+
+::-webkit-progress-inner-element {
+    border: 2px solid rgb(112, 112, 112);
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 details {
@@ -181,22 +206,23 @@ code {
     line-height: 20px;
 }
 
-code strong{
+code strong {
     color: white;
     font-family: monospace;
 }
 
-code b{
+code b {
     color: greenyellow;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
-code strong::selection, code b::selection{
+code strong::selection,
+code b::selection {
     background-color: white;
     color: black;
 }
 
-br::selection{
+br::selection {
     background-color: white;
 }
 
@@ -364,7 +390,7 @@ dialog div span input[type=number]:focus {
     transition: all 100ms;
 }
 
-dialog div span input[type=radio]{
+dialog div span input[type=radio] {
     margin-right: 3px;
 }
 
@@ -407,6 +433,10 @@ code+button {
     font-weight: bold;
 }
 
+.alert{
+    animation: alert 200ms infinite;
+}
+
 @media (max-width:660px) {
     dialog {
         min-width: 270px;
@@ -427,4 +457,16 @@ code+button {
         color: white;
     }
 
+}
+
+@keyframes alert {
+    0%{
+        background-color:greenyellow;
+    }
+    50%{
+        background-color: red;
+    }
+    100%{
+        background-color: yellow;
+    }
 }
