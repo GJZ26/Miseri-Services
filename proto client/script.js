@@ -226,6 +226,38 @@ function webAlert(active) {
     }
 }
 
+function loadStats(stats){
+    gas_media.textContent = `${stats["gas_ppm"]["media"].toFixed(2)} ppm`
+    gas_range.textContent = `${stats["gas_ppm"]["range"].toFixed(2)} ppm`
+    gas_highest.textContent = `${stats["gas_ppm"]["highest"].toFixed(2)} ppm`
+    gas_lowest.textContent = `${stats["gas_ppm"]["lowest"].toFixed(2)} ppm`
+    gas_variation.textContent = stats["gas_ppm"]["varUnit"]
+
+    air_media.textContent = `${stats["co_ppm"]["media"].toFixed(2)} ppm`
+    air_range.textContent = `${stats["co_ppm"]["range"].toFixed(2)} ppm`
+    air_highest.textContent = `${stats["co_ppm"]["highest"].toFixed(2)} ppm`
+    air_lowest.textContent = `${stats["co_ppm"]["lowest"].toFixed(2)} ppm`
+    air_variation.textContent = `${stats["co_ppm"]["varUnit"]}`
+
+    hum_media.textContent = `${stats["hum"]["media"].toFixed(2)}%`
+    hum_range.textContent = `${stats["hum"]["range"].toFixed(2)}%`
+    hum_highest.textContent = `${stats["hum"]["highest"].toFixed(2)}%`
+    hum_lowest.textContent = `${stats["hum"]["lowest"].toFixed(2)}%`
+    hum_variation.textContent = `${stats["hum"]["varUnit"]}`
+
+    light_media.textContent = `${stats["light"]["media"].toFixed(2)}%`
+    light_range.textContent = `${stats["light"]["range"].toFixed(2)}%`
+    light_highest.textContent = `${stats["light"]["highest"].toFixed(2)}%`
+    light_lowest.textContent = `${stats["light"]["lowest"].toFixed(2)}%`
+    light_variation.textContent = `${stats["light"]["varUnit"]}`
+
+    tem_media.textContent = `${stats["tem"]["media"].toFixed(2)} °C`
+    tem_range.textContent = `${stats["tem"]["range"].toFixed(2)} °C`
+    tem_highest.textContent = `${stats["tem"]["highest"].toFixed(2)} °C`
+    tem_lowest.textContent = `${stats["tem"]["lowest"].toFixed(2)} °C`
+    tem_variation.textContent = `${stats["tem"]["varUnit"]}`
+}
+
 /*=============================================
 =               EventListeners                =
 =============================================*/
@@ -264,4 +296,8 @@ socket.on('disconnect', () => {
 
 socket.on('data', (data) => {
     updateGeneralView(data)
+})
+
+socket.on("stats", (data)=>{
+    loadStats(data)
 })

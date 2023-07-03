@@ -1,11 +1,18 @@
 import socketio
 import eventlet
 import os
-from flask import Flask
+import PyE
+import Database
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+god = PyE.PyE()
+saver = Database.Storer()
+
+saver.setConnection()
 
 sio = socketio.Server(cors_allowed_origins='*')
 
@@ -42,9 +49,26 @@ def disconnect(sid):
 def data(sid, data):
     print(data)
     sio.emit('data',data,room='monitor',namespace='/client')
+    
+@app.route('/data', methods=["GET","POST"])
+def data():
+    global god
+    global saver
+    
+    rawData = request.get_json()
+    InformationDecomposed = god.decomposeAndGroup(rawData)
+    stats = god.calculateData(InformationDecomposed)
+    sio.emit("stats",stats, room='monitor', namespace='/client')
+    
+    saver.saveRecord(rawData,"data")
+    saver.saveRecord(stats,"stats")
+    
+    return "Done"
+
 
 # Running App
 app = socketio.WSGIApp(sio, app)
 if __name__ == '__main__':
+    print("Server up on port 5000")
     eventlet.wsgi.server(eventlet.listen(('', 5000)),
                          app, log=open(os.devnull, 'w'))

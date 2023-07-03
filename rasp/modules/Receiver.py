@@ -3,6 +3,9 @@ import json
 import time
 
 class Receiver:
+    # This class is in charge of connecting and reading the serial outputs from the USB input.
+    # Miseri Sense - 2023 
+    # By: GJZ26
     
     rate:int = 115200
     port:str = '/dev/ttyUSB0'
