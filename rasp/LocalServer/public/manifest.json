@@ -1,0 +1,9 @@
+{
+    "version": "3.0.1-dev",
+    "websocket": {
+        "protocol": "http",
+        "host": "192.168.56.1",
+        "port": 5000,
+        "namespace": "client"
+    }
+}
