@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>😏😏</title>
+    <link rel="stylesheet" href="./static/oiiaoiia.css">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <h1>
+        How curious...
+    </h1>
+    <p>
+        You've come this far, somehow you've discovered our secret...
+    </p>
+    <p>
+        This is for existing, be rewarded
+    </p>
+    <video src="./static/media/d.mp4" muted="true" preload="auto" style="display: none;"></video>
+    <button id="B">Give me that shit!!!</button>
+</body>
+<script>
+    document.getElementById("B").addEventListener("click", () => {
+        document.body.innerHTML = ""
+        const h1 = document.createElement('h1')
+        const p = document.createElement('p')
+        const btn = document.createElement('button')
+        const btn2 = document.createElement('button')
+        h1.textContent ="Do you have epilepsy?"
+        p.textContent = "It's not that we don't want you to see it, but we don't want you to have a seizure either...."
+        btn.textContent = "Yes, I suffer from epileptic seizures :("
+        btn2.textContent = "Nope, I do not suffer from epileptic seizures."
+
+        btn2.id = "A"
+        btn.id = "C"
+
+        document.body.appendChild(h1)
+        document.body.appendChild(p)
+        document.body.appendChild(btn)
+        document.body.appendChild(btn2)
+
+        document.getElementById("C").addEventListener('click',()=>{
+            document.body.innerHTML = "<h1>Sorry :(</h1><p>There are more entertaining surprises, but this one isn't for you....</p>"
+        })
+        document.getElementById("A").addEventListener('click', () => {
+            document.body.classList.add("normal")
+            document.body.innerHTML = ""
+            mimir = false
+            const cat = document.createElement("video")
+            cat.src = "./static/media/d.mp4"
+            cat.loop = true
+            cat.autoplay = true
+            cat.addEventListener('loadeddata', () => {
+                requestAnimationFrame(() => {
+                    loop()
+                })
+            })
+    
+            function loop() {
+                if (cat.currentTime > 0 && cat.currentTime <= 0.2) {
+                    document.body.className = ''
+                    document.body.classList.add("wow")
+                }
+                if (cat.currentTime >= 2 && cat.currentTime < 2.1) {
+                    document.body.className = ''
+                    document.body.classList.add("normal")
+                }
+                if (cat.currentTime >= 3 && cat.currentTime < 3.1) {
+                    document.body.className = ''
+                    document.body.classList.add("wow")
+                }
+                if (cat.currentTime >= 5.2 && cat.currentTime < 5.4) {
+                    document.body.className = ''
+                    document.body.classList.add("normal")
+                }
+                if (cat.currentTime >= 6.2 && cat.currentTime < 6.3) {
+                    document.body.className = ''
+                    document.body.classList.add("chido")
+                }
+                if (cat.currentTime >= 12.9 && cat.currentTime < 13) {
+                    document.body.className = ''
+                    document.body.classList.add("dans")
+                }
+                if (cat.currentTime >= 19.1 && cat.currentTime < 19.2) {
+                    document.body.className = ''
+                    document.body.classList.add("cat")
+                }
+                if (cat.currentTime >= 19.1 && cat.currentTime < 19.2) {
+                    document.body.className = ''
+                    document.body.classList.add("cat")
+                }
+                if (cat.currentTime >= 25.3 && cat.currentTime < 25.4) {
+                    document.body.className = ''
+                    document.body.classList.add("dog")
+                }
+                if (cat.currentTime >= 30.0 && cat.currentTime < 30.1) {
+                    document.body.className = ''
+                    document.body.classList.add("amogus")
+                }
+                if (cat.currentTime >= 31.8 && cat.currentTime < 31.9) {
+                    document.body.className = ''
+                    document.body.classList.add("bong")
+                }
+                if (cat.currentTime >= 34.4 && cat.currentTime < 34.5) {
+                    document.body.className = ''
+                    document.body.classList.add("wow-pro")
+                }
+                if (cat.currentTime >= 34.8 && cat.currentTime < 34.9) {
+                    document.body.className = ''
+                    document.body.classList.add("bong")
+                }
+                if (cat.currentTime >= 37.72 && cat.currentTime < 37.76) {
+                    document.body.className = ''
+                    document.body.classList.add("wow-pro")
+                }
+                if (cat.currentTime >= 38.00 && cat.currentTime < 38.1) {
+                    document.body.className = ''
+                    document.body.classList.add("bong")
+                }
+                if (cat.currentTime >= 40.90 && cat.currentTime < 41) {
+                    document.body.className = ''
+                    document.body.classList.add("dachill")
+                }
+                if (cat.currentTime >= 42.90 && cat.currentTime < 43) {
+                    document.body.className = ''
+                    document.body.classList.add("wat")
+                }
+                if (cat.currentTime >= 44.40 && cat.currentTime < 44.5) {
+                    document.body.className = ''
+                    document.body.classList.add("chillo")
+                }
+                if (cat.currentTime >= 50.6 && cat.currentTime < 50.7) {
+                    document.body.className = ''
+                    document.body.classList.add("chill")
+                }
+                if (cat.currentTime >= 56.9 && cat.currentTime < 57) {
+                    document.body.className = ''
+                    document.body.classList.add("clean")
+                }
+                if (cat.currentTime >= 56.9 && cat.currentTime < 57) {
+                    document.body.className = ''
+                    document.body.classList.add("clean")
+                }
+                if (cat.currentTime >= 57.3 && cat.currentTime < 57.4) {
+                    document.body.className = ''
+                    document.body.classList.add("bye")
+                }
+                if (cat.currentTime >= 59.50 && cat.currentTime < 59.65) {
+                    mimir = true
+                    document.body.className = ''
+                    document.body.innerHTML = "<h1>Thanks for coming this far 🙂</h1>"
+                    document.body.innerHTML += '<a href="/">back home 🏠</a>'
+                }
+    
+                if (!mimir) {
+                    requestAnimationFrame(loop)
+                }
+            }
+    
+            document.body.appendChild(cat)
+        })
+    })
+</script>
+
+</html>
