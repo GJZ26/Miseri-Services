@@ -1,6 +1,7 @@
 from enum import Enum
 import requests
 
+
 class Mode(Enum):
     REMOTE = "remote"
     LOCAL = "local"
@@ -31,7 +32,10 @@ class HttpClient:
             self.connect(Mode.REMOTE)
         else:
             self.connect(Mode.LOCAL)
-        
+
     def sendData(self, data):
-        response = requests.post(self.URI[self.connectionMode], json=data)
-        print(response)
+        try:
+            response = requests.post(self.URI[self.connectionMode], json=data)
+            print(response)
+        except:
+            print("No se pudo realizar la conexion con el servidor HTTP")

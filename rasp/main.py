@@ -10,7 +10,7 @@ backup = GoodMan.Backup()
 puerto = 'COM3'  # Especifica el puerto serial correcto
 baudios = 115200
 
-ws.connect(Mode.LOCAL)
+ws.connect(Mode.REMOTE)
 
 def setup():
     global reader
@@ -18,8 +18,8 @@ def setup():
     reader.connect()
     
 def loop():
-    global backup
-    linea = None
+    global backup, reader
+    linea = reader.readSerial()
     if linea is not None:
         #print(str(linea) + ",")
         print("-- Data from ESP32")

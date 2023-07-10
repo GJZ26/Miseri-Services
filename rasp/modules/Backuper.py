@@ -1,8 +1,8 @@
 import random
 import datetime
-import time # test only
 import modules.HttpClient as HttpClient
 from modules.HttpClient import Mode
+import threading
 
 class Backup:
 
@@ -36,8 +36,9 @@ class Backup:
                 print("Time to backup!, but there's not info cached")
                 self.lastBackup = datetime.datetime.now()
                 return
-            print("Data Backed up ->")
-            self.requester.sendData(self.dataCached)
+            print("Try to Back up ->")
+            threading.Thread(target=self.requester.sendData, args=(self.dataCached,)).start()
+            print("Eliminando caché:)")
             self.dataCached = []
             self.lastBackup = datetime.datetime.now()
         pass
