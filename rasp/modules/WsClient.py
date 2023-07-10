@@ -6,7 +6,7 @@ class Mode(Enum):
     REMOTE = "remote"
 
 class WsClient:
-    URI = {'local':'http://localhost:5000', 'remote':'http://localhost:5000'}
+    URI = {'local':'http://localhost:5000', 'remote':'http://192.168.1.66:5555'}
     NAMESPACE = '/sensor'
     connection:socketio.client.Client = None
     connectionMode:Mode = None
@@ -30,6 +30,7 @@ class WsClient:
             self.connection = socketio.Client()
             self.connection.connect(self.URI[self.connectionMode],namespaces=[self.NAMESPACE])
             print("Conexion exitosa!")
+            self.isConnected = True
         except:
             print("Conexion fallida!")
     
@@ -50,7 +51,11 @@ class WsClient:
         
     def sendData(self, data):
         if self.isConnected:
-            self.connection.emit('data',data,namespace=self.NAMESPACE)
+            try:
+                self.connection.emit('data',data,namespace=self.NAMESPACE)
+            except:
+                print("No se ha podido realizar la última peticion")
+                self.isConnected = False
         else:
             print("No se puede enviar informacion porque no hay una conexion establecida")
     

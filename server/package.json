@@ -1,0 +1,17 @@
+{
+  "name": "miseri-ws-server",
+  "version": "0.0.1-dev",
+  "description": "Web Socket Server for remote real-time data communication",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "npx nodemon main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.7.1"
+  }
+}
