@@ -48,7 +48,7 @@ class Receiver:
                 self.connect()
                 return
             print("Unable to recover connection, please check your hardware connection.")
-            return 1
+            quit()
             
     def readSerial(self):
         if self.serialConnection is None:
