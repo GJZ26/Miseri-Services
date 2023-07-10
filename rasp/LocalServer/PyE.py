@@ -1,6 +1,5 @@
 from datetime import datetime
 import pytz
-import math
 
 class PyE:
     def __init__(self) -> None:

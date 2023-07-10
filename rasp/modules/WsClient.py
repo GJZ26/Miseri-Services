@@ -10,6 +10,7 @@ class WsClient:
     NAMESPACE = '/sensor'
     connection:socketio.client.Client = None
     connectionMode:Mode = None
+    isConnected = False
     
     def __init__(self):
         pass
@@ -24,10 +25,13 @@ class WsClient:
             print("Ya tienes una conexion activa")
             return
         
-        self.connectionMode = mode.value
-        self.connection = socketio.Client()
-        self.connection.connect(self.URI[self.connectionMode],namespaces=[self.NAMESPACE])
-        print("Conexion exitosa!")
+        try:
+            self.connectionMode = mode.value
+            self.connection = socketio.Client()
+            self.connection.connect(self.URI[self.connectionMode],namespaces=[self.NAMESPACE])
+            print("Conexion exitosa!")
+        except:
+            print("Conexion fallida!")
     
     def disconnect(self):
         if self.connection is None:
@@ -45,5 +49,8 @@ class WsClient:
             self.connect(Mode.LOCAL)
         
     def sendData(self, data):
-        self.connection.emit('data',data,namespace=self.NAMESPACE)
+        if self.isConnected:
+            self.connection.emit('data',data,namespace=self.NAMESPACE)
+        else:
+            print("No se puede enviar informacion porque no hay una conexion establecida")
     
