@@ -69,5 +69,10 @@ class Receiver:
                 self.connect()
             return None
     
+    def writeSerial(self,message:str=None):
+        if message is None:
+            return
+        self.serialConnection.write(message.encode())
+    
     def disconnect(self):
         self.serialConnection.close()
