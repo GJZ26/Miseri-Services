@@ -36,6 +36,7 @@ class HttpClient:
     def sendData(self, data):
         try:
             response = requests.post(self.URI[self.connectionMode], json=data)
-            print(response)
+            if response.status_code == 200:
+                print("Consulta con éxito")
         except:
             print("No se pudo realizar la conexion con el servidor HTTP")

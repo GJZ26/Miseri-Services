@@ -1,5 +1,5 @@
 .vscode/
-rasp/LocalServer/__pycache__/
+rasp/localServer/__pycache__/
 rasp/modules/__pycache__/
 .gitignore
 server/node_modules/

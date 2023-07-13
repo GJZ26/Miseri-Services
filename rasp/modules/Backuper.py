@@ -54,4 +54,5 @@ class Backup:
             record["session"] = self.session
             self.dataCached.append(record)
             self.lastSample = datetime.datetime.now()
+            print(record)
             print("Data saved to caché <-")

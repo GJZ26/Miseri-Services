@@ -7,7 +7,7 @@ class PyE:
 
     def decomposeAndGroup(self, data):
         result = {
-            "meta": {"total_data": 0, "date": None, "session":None},
+            "meta": {"total_data": 0, "date": None, "session":None, "deviceId":None},
             "gas_ppm": [],
             "co_ppm": [],
             "light": [],
@@ -27,6 +27,7 @@ class PyE:
         now = datetime.now(pytz.timezone('America/Mexico_City'))
         result["meta"]["date"] = f'{now.day}/{now.month}/{now.year} - {now.hour}:{now.minute}:{now.second} - {now.tzinfo}'
         result["meta"]["session"] = data[0]["session"]
+        result["meta"]["deviceId"] = data[0]["deviceId"]
         return result
 
     def calculateData(self, list):
@@ -42,6 +43,7 @@ class PyE:
         result["meta"]["total_data"] = list["meta"]["total_data"]
         result["meta"]["date"] = list["meta"]["date"]
         result["meta"]["session"] = list["meta"]["session"]
+        result["meta"]["deviceId"] = list["meta"]["deviceId"]
 
         result["gas_ppm"]["media"] = sum(
             list["gas_ppm"]) / len(list["gas_ppm"])
