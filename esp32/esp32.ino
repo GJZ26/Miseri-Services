@@ -136,16 +136,20 @@ void readSerial()
 
     if (byteValue != 13 && byteValue != 10)
     {
-      if(byteValue == 126){
+      if (byteValue == 126) // ~ for welcome message
+      {
         welcomeScreen();
-        while (Serial.available() > 0){Serial.read();}
+        while (Serial.available() > 0) // Empty the entire Serial queue
+        {
+          Serial.read();
+        }
         return;
       }
       if (queueLength == 16)
       {
         lcd.setCursor(0, 1);
       }
-      if (byteValue == 94)
+      if (byteValue == 94) // ^ for degree symbol
       {
         lcd.write(1);
         continue;
