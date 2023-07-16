@@ -8,7 +8,10 @@ class LCD:
 
     def __init__(self):
         self.screen = lcd.lcd()
+        self.screen.backlight(0)
         self.screen.lcd_load_custom_chars(self.alien)
+        self.screen.backlight(1)
+        self.screen.lcd_display_string("Welcome...")
 
     def welcomeScreen(self):
         self.screen.lcd_clear()
@@ -25,6 +28,10 @@ class LCD:
         self.screen.lcd_clear()
 
     def say(self, message: str = None):
+        if(len(message)>16):
+            self.screen.lcd_display_string(message[:16],1,0)
+            self.screen.lcd_display_string(message[16:],2,0)
+            return
         if message is None:
             self.welcomeScreen()
             return
