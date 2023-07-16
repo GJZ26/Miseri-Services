@@ -13,6 +13,7 @@ mylcd.lcd_display_string("Hola mundo")
 sleep(2)
 
 mylcd.lcd_clear()
+
 fontdata1 = [
     # Char 0 - Upper-left
     [0x00, 0x00, 0x03, 0x04, 0x08, 0x19, 0x11, 0x10],
