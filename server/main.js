@@ -1,7 +1,17 @@
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
-const httpServer = createServer();
+import settings from './setting.json' assert {type: 'json'}
+
+const HOSTNAME = settings.host
+const PORT = settings.port
+
+const httpServer = createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write('Hello World!');
+    res.end();
+    console.log("Request made to remote server")
+});
 const io = new Server(httpServer, {
     cors: {
         origin: "*",
@@ -12,16 +22,18 @@ const io = new Server(httpServer, {
 /*--------  Sensors namespace  ------*/
 
 io.of("/sensor").on("connect", (cli) => {
-    console.log(cli.conn.remoteAddress)
-    console.log("Nuevo sensor conectado:)!")
+    console.log(`✅ A sensor has successfully connected to the server. - IP ${cli.conn.remoteAddress}`)
 
-    cli.on("disconnect",()=>{
-        io.of("/client").to("monitor").emit("log","Tu sensor ha perdido conexion con nuuestro servidor...")
-        console.log("Sensor ha perdido conexion con el cliente")
+    io.of("/client").to("monitor").emit("log", "Your device has successfully established connection.")
+
+    cli.on("disconnect", () => {
+        io.of("/client").to("monitor").emit("log", "A sensor has lost communication with the server")
+        console.log(`❌ A sensor has lost communication with the server - IP ${cli.conn.remoteAddress}`)
     })
 
-    cli.on("data",(data)=>{
-        io.of("/client").to("monitor").emit('data',data)
+    cli.on("data", (data) => {
+        io.of("/client").to("monitor").emit('data', data)
+        console.log("ℹ️ Information received from a sensor.")
     })
 })
 
@@ -29,16 +41,22 @@ io.of("/sensor").on("connect", (cli) => {
 
 io.of("/client").on("connect", (cli) => {
     cli.join("monitor")
-    io.of("/client").to("monitor").except(cli.id).emit("log", "Nuevo cliente conectado!", "monitor")
-    cli.emit("log", "Conexion exitosa")
-    console.log(`Nuevo cliente conectado, a través de la IP: ${cli.conn.remoteAddress}`)
+
+    console.log(`📥 A new user connected to the server - IP ${cli.conn.remoteAddress}`)
+
+    io.of("/client").to("monitor").except(cli.id).emit("log", " -> A user has joined the monitoring.", "monitor")
+    console.log("A user has joined the monitoring.")
+
+    cli.emit("log", "Welcome to Miseri Sense")
+
     cli.on("disconnect", () => {
         cli.leave("monitor")
-        io.of("/client").to("monitor").emit("log", "Un usuario ha perdido conexion con el servidor")
-        console.log(`El cliente ${cli.conn.remoteAddress} ha perdido conexion con el servidor`)
+        io.of("/client").to("monitor").emit("log", "A user has left the monitoring  ->")
+        console.log(`📤 A user has lost connection to the server - IP ${cli.conn.remoteAddress}`)
     })
 })
 
-httpServer.listen(5555, "192.168.1.66", undefined, () => {
-    console.log("Miseri WebSocket Server - Running on: ....")
+httpServer.listen(PORT, HOSTNAME, undefined, () => {
+    console.log("\n--- Welcome to Miseri WebWSocket Server ---\n")
+    console.log(`Access: http://${HOSTNAME}:${PORT}/`)
 });

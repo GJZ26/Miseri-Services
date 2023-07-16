@@ -1,5 +1,6 @@
 from enum import Enum
 import requests
+import json
 
 
 class Mode(Enum):
@@ -9,25 +10,28 @@ class Mode(Enum):
 
 class HttpClient:
 
-    URI = {"local": "http://localhost:5000/data",
-           "remote": "http://localhost:5000/data"}
+    URI = {}
 
     connectionMode: Mode = None
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self):
+        with open('./modules/modules-config.json') as file:
+            config = json.load(file)
+            self.URI["local"] = config["httpclient"]["local"]
+            self.URI["remote"] = config["httpclient"]["remote"]
 
     def connect(self, mode: Mode):
 
         if mode is not Mode.LOCAL and mode is not Mode.REMOTE:
-            print("Parámetro no válido")
+            print("[HttClient]: Invalid parameter ❌")
             return
 
         self.connectionMode = mode.value
         print(
-            f'Conexion establecida como {mode.value} hacia {self.URI[mode.value]}')
+            f'[HttClient]: Requests for endorsement will be made as {mode.value} to {self.URI[mode.value]}.')
 
     def toggleConnection(self):
+        print(f'[HttClient]: Switching connections 🔄')
         if self.connectionMode == Mode.LOCAL.value:
             self.connect(Mode.REMOTE)
         else:
@@ -37,6 +41,6 @@ class HttpClient:
         try:
             response = requests.post(self.URI[self.connectionMode], json=data)
             if response.status_code == 200:
-                print("Consulta con éxito")
+                print("[HttClient]: Successful database backup ☁️")
         except:
-            print("No se pudo realizar la conexion con el servidor HTTP")
+            print("[HttClient]: Unable to complete server backup request ❌")

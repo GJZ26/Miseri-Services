@@ -9,7 +9,7 @@ class ServerManager:
     
     def up(self):
         if self.runnig:
-            print ("You already have a server running...")
+            print ("[SerMan]: You already have a server running...")
             return
         print("Server running...")
         self.thread = subprocess.Popen(["python", "localServer/WebSocketServer.py"])
@@ -17,9 +17,9 @@ class ServerManager:
         
     def shutdown(self):
         if self.runnig:    
-            print("Shutting down server...")
+            print("[SerMan]: Shutting down server...")
             self.thread.terminate()
-            print("Server shutdown success!")
+            print("[SerMan]: Server shutdown success!")
             self.runnig = False
         
 

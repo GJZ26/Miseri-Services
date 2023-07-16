@@ -1,0 +1,14 @@
+{
+    "wsclient": {
+        "remote": "http://192.168.1.66:5555",
+        "local": "http://192.168.1.66:5000"
+    },
+    "httpclient": {
+        "remote": "http://192.168.1.66:5555/data",
+        "local": "http://192.168.1.66:5000/data"
+    },
+    "receiver": {
+        "attempts_limit": 5,
+        "delay": 1
+    }
+}

@@ -16,16 +16,22 @@ class Backup:
     
     requester = HttpClient.HttpClient()
 
-    def __init__(self, sampling_time: int = 3, backup_time: int = 10):
+    def __init__(self, sampling_time: int = 3, backup_time: int = 10, connectionMode:str=None):
         self.session = self.createSession()
         self.setup(sampling_time, backup_time)
-        self.requester.connect(Mode.LOCAL)
+        if connectionMode == "remote":
+            self.requester.connect(Mode.REMOTE)
+        else:
+            self.requester.connect(Mode.LOCAL)
 
     def createSession(self):
         letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890"
         session = f'{letters[random.randrange(0,len(letters),1)]}{letters[random.randrange(0,len(letters),1)]}{letters[random.randrange(0,len(letters),1)]}_{letters[random.randrange(0,len(letters),1)]}{letters[random.randrange(0,len(letters),1)]}{letters[random.randrange(0,len(letters),1)]}'
         return session
-
+        
+    def toggleConnection(self):
+        self.requester.toggleConnection()    
+    
     def setup(self, sampling_time: int = 3, backup_time: int = 10):
         self.sampleTime = sampling_time
         self.backTime = backup_time
@@ -33,12 +39,12 @@ class Backup:
     def verifyBackup(self):
         if self.lastBackup == 0 or datetime.datetime.now() - self.lastBackup >= datetime.timedelta(seconds=self.backTime):
             if len(self.dataCached) <= 0:
-                print("Time to backup!, but there's not info cached")
+                print("[Backuper]: Backup time reached, but no cache data to backup")
                 self.lastBackup = datetime.datetime.now()
                 return
-            print("Try to Back up ->")
+            print("[Backuper]: Contacting the server for backup ☁️")
             threading.Thread(target=self.requester.sendData, args=(self.dataCached,)).start()
-            print("Eliminando caché:)")
+            print("[Backuper]: Removing cache data 🗑️")
             self.dataCached = []
             self.lastBackup = datetime.datetime.now()
         pass
@@ -46,7 +52,7 @@ class Backup:
     def saveRecord(self, record):
         if self.lastSample == 0 or datetime.datetime.now() - self.lastSample >= datetime.timedelta(seconds=self.sampleTime):
             if record is None:
-                print("Your last record isn't valid, we're not save that on cache")
+                print("[Backuper]: Your last record isn't valid, we're not save that on cache")
                 self.lastSample = datetime.datetime.now()
                 return
             
@@ -54,5 +60,4 @@ class Backup:
             record["session"] = self.session
             self.dataCached.append(record)
             self.lastSample = datetime.datetime.now()
-            print(record)
-            print("Data saved to caché <-")
+            print("[Backuper]: Data saved to caché 💾")

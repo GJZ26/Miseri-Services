@@ -10,19 +10,17 @@ backup = GoodMan.Backup()
 puerto = 'COM3'  # Especifica el puerto serial correcto
 baudios = 115200
 
-ws.connect(Mode.REMOTE)
-
 def setup():
-    global reader
+    global reader, ws
+    ws.connect(Mode.LOCAL)
     reader = Receiver.Receiver(baudios,puerto)
     reader.connect()
+    print("\n--- Miseri Sense | Raspberry Services ---\n")
     
 def loop():
     global backup, reader
     linea = reader.readSerial()
     if linea is not None:
-        #print(str(linea) + ",")
-        print("-- Data from ESP32")
         ws.sendData(linea)
         backup.saveRecord(linea)
     backup.verifyBackup()

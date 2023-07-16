@@ -48,7 +48,7 @@ def disconnect(sid):
     
 @sio.on('data', namespace='/sensor')
 def data(sid, data):
-    print(data)
+    print("Data received from user...")
     sio.emit('data',data,room='monitor',namespace='/client')
     
 @app.route('/data', methods=["GET","POST"])
@@ -63,6 +63,7 @@ def data():
     
     saver.saveRecord(rawData,"data")
     saver.saveRecord(stats,"stats")
+    print("Request Done!")
     
     return "Done"
 
@@ -82,9 +83,10 @@ def page_not_found(error):
 app = socketio.WSGIApp(sio, app)
 if __name__ == '__main__':
     try:
+        print("\n--- Miseri Sense - HTTP / WS Local Server ---\n")
         print("Server up on port 5000")
         eventlet.wsgi.server(eventlet.listen(('', 5000)),
                             app, log=open(os.devnull, 'w'))
     except KeyboardInterrupt:
-        print("Cerrando servidor...")
+        print("Closing server...")
         pass
