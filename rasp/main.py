@@ -12,15 +12,15 @@ scrn.say("Conectando a los servidores...")
 ser = sm.ServerManager()
 
 ws = wsclient.WsClient()
-backup = GoodMan.Backup()
+backup = GoodMan.Backup(3,10,"remote")
 
 # Configurar la comunicación serial
-puerto = 'COM3'  # Especifica el puerto serial correcto
+puerto = None #'COM3'  # Especifica el puerto serial correcto
 baudios = 115200
 
 def setup():
     global reader, ws, scrn
-    ws.connect(Mode.LOCAL)
+    ws.connect(Mode.REMOTE)
     reader = Receiver.Receiver(baudios,puerto)
     reader.connect()
     print("\n--- Miseri Sense | Raspberry Services ---\n")
