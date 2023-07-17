@@ -20,13 +20,13 @@ def setup():
     global reader, ws, scrn
     ws.connect(Mode.LOCAL)
     reader = Receiver.Receiver(baudios,puerto)
-    #reader.connect()
+    reader.connect()
     print("\n--- Miseri Sense | Raspberry Services ---\n")
     scrn.welcomeScreen()
     
 def loop():
     global backup, reader, physic
-    linea = None #reader.readSerial()
+    linea = reader.readSerial()
     if linea is not None:
         ws.sendData(linea)
         backup.saveRecord(linea)
