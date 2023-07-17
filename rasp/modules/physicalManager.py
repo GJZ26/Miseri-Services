@@ -21,6 +21,7 @@ class PhysicalManager:
 				self.exchangePin[2] = not self.exchangePin[2]
 				return True
 		else:
+			print("Apagado")
 			self.exchangePin[1]=False
 		pass
 
