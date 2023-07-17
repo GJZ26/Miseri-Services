@@ -32,7 +32,10 @@ def loop():
         backup.saveRecord(linea)
     backup.verifyBackup()
     if physic.readPins():
-        scrn.say(f"Cambiando a {ws.connectionMode}")
+        scrn.clear()
+        scrn.say(f"Cambiando a     {ws.connectionMode}")
+        ws.toggleConnection()
+        backup.toggleConnection()
     pass
 
 try:
