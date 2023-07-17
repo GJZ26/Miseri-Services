@@ -4,10 +4,12 @@ from modules.WsClient import Mode
 import modules.Backuper as GoodMan
 import modules.LCD as screen
 import modules.physicalManager as phy
+import modules.ServersManager as sm
 
 scrn = screen.LCD()
 physic = phy.PhysicalManager()
 scrn.say("Conectando a los servidores...")
+ser = sm.ServerManager()
 
 ws = wsclient.WsClient()
 backup = GoodMan.Backup()
@@ -25,7 +27,7 @@ def setup():
     scrn.welcomeScreen()
     
 def loop():
-    global backup, reader, physic
+    global backup, reader, physic,ser
     linea = reader.readSerial()
     if linea is not None:
         ws.sendData(linea)
@@ -34,6 +36,7 @@ def loop():
     if physic.readPins():
         scrn.clear()
         scrn.say("Cambiando       protocolos")
+        ser.toggleServer()
         print("[Main]: Toggling servers")
         ws.toggleConnection()
         backup.toggleConnection()

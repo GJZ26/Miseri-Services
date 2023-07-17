@@ -1,11 +1,11 @@
 {
     "wsclient": {
         "remote": "http://192.168.0.3:5555",
-        "local": "http://192.168.0.3:5000"
+        "local": "http://192.168.0.12:5000"
     },
     "httpclient": {
-        "remote": "http://192.168.0.3:5555/data",
-        "local": "http://192.168.0.3:5000/data"
+        "remote": "http://192.168.0.6:8080/miseri/api/sensor/list",
+        "local": "http://192.168.0.12:5000/data"
     },
     "receiver": {
         "attempts_limit": 5,
