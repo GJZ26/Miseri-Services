@@ -33,10 +33,12 @@ def loop():
     backup.verifyBackup()
     if physic.readPins():
         scrn.clear()
+        scrn.say("Cambiando       protocolos")
         print("[Main]: Toggling servers")
         ws.toggleConnection()
         backup.toggleConnection()
-        scrn.say(f"Cambiando a     {ws.connectionMode}")
+        scrn.clear()
+        scrn.say(f"Actualizado a:  {ws.connectionMode}")
     pass
 
 try:
