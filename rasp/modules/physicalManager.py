@@ -14,8 +14,8 @@ class PhysicalManager:
 		pass
 
 	def readPins(self):
-		print(self.exchangePin)
 		if (gp.input(self.exchangePin[0]) == gp.HIGH):
+			print("Encendido")
 			if self.exchangePin[1] == False: 
 				self.exchangePin[1] = True
 				self.exchangePin[2] = not self.exchangePin[2]
