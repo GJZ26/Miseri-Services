@@ -14,6 +14,7 @@ class PhysicalManager:
 		pass
 
 	def readPins(self):
+		print(self.exchangePin)
 		if (gp.input(self.exchangePin[0]) == gp.HIGH):
 			if self.exchangePin[1] == False: 
 				self.exchangePin[1] = True
