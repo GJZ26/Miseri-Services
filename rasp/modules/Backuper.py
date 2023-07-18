@@ -85,6 +85,7 @@ class Backup:
                 "deviceId": None,
                 "session": None
             }
+            print(record)
             select["air"]["gasPpm"] = record["air"]["gas_ppm"]
             select["air"]["coPpm"] = record["air"]["co_ppm"]
             select["light"]["raw"] = (
