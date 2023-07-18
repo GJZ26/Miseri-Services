@@ -85,17 +85,16 @@ class Backup:
                 "deviceId": None,
                 "session": None
             }
-            print(record)
             select["air"]["gasPpm"] = record["air"]["gas_ppm"]
             select["air"]["coPpm"] = record["air"]["co_ppm"]
             select["light"]["raw"] = (
                 record["light_sensor_a"]["raw"] + record["light_sensor_b"]["raw"])/2
             select["light"]["percent"] = (
                 record["light_sensor_a"]["percent"] + record["light_sensor_b"]["percent"])/2
-            select["humTemp"]["raw"] = (
-                record["hum_temp_a"]["raw"] + record["hum_temp_b"]["raw"])/2
-            select["humTemp"]["percent"] = (
-                record["hum_temp_a"]["percent"] + record["hum_temp_b"]["percent"])/2
+            select["humTemp"]["temperature"] = (
+                record["hum_temp_a"]["temperature"] + record["hum_temp_b"]["temperature"])/2
+            select["humTemp"]["humidity"] = (
+                record["hum_temp_a"]["humidity"] + record["hum_temp_b"]["humidity"])/2
             select["date"] = datetime.datetime.now().strftime("%d-%m-%Y")
             select["session"] = self.session
             select["deviceId"] = record["deviceId"]
