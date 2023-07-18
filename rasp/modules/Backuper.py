@@ -50,7 +50,7 @@ class Backup:
                 dataToSend = self.dataCached
             else:
                 dataToSend = self.dataCachedRemote
-                
+            print(dataToSend)
             threading.Thread(target=self.requester.sendData,
                              args=(dataToSend,)).start()
             print("[Backuper]: Removing cache data 🗑️")
