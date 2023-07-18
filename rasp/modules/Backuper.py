@@ -67,38 +67,38 @@ class Backup:
                     "[Backuper]: Your last record isn't valid, we're not save that on cache")
                 self.lastSample = datetime.datetime.now()
                 return
-            for recor in record:
-                select = {
-                    "air": {
-                        "gasPpm": None,
-                        "coPpm": None
-                    },
-                    "light": {
-                        "raw": None,
-                        "percent": None
-                    },
-                    "humTemp": {
-                        "temperature": None,
-                        "humidity": None
-                    },
-                    "date": None,
-                    "deviceId": None,
-                    "session": None
-                }
-                select["air"]["gasPpm"] = recor["air"]["gas_ppm"]
-                select["air"]["coPpm"] = recor["air"]["co_ppm"]
-                select["light"]["raw"] = (
-                    recor["light_sensor_a"]["raw"] + recor["light_sensor_b"]["raw"])/2
-                select["light"]["percent"] = (
-                    recor["light_sensor_a"]["percent"] + recor["light_sensor_b"]["percent"])/2
-                select["humTemp"]["raw"] = (
-                    recor["hum_temp_a"]["raw"] + recor["hum_temp_b"]["raw"])/2
-                select["humTemp"]["percent"] = (
-                    recor["hum_temp_a"]["percent"] + recor["hum_temp_b"]["percent"])/2
-                select["date"] = datetime.datetime.now().strftime("%d-%m-%Y")
-                select["session"] = self.session
-                select["deviceId"] = recor["deviceId"]
-                self.dataCachedRemote.append(select)
+
+            select = {
+                "air": {
+                    "gasPpm": None,
+                    "coPpm": None
+                },
+                "light": {
+                    "raw": None,
+                    "percent": None
+                },
+                "humTemp": {
+                    "temperature": None,
+                    "humidity": None
+                },
+                "date": None,
+                "deviceId": None,
+                "session": None
+            }
+            select["air"]["gasPpm"] = record["air"]["gas_ppm"]
+            select["air"]["coPpm"] = record["air"]["co_ppm"]
+            select["light"]["raw"] = (
+                record["light_sensor_a"]["raw"] + record["light_sensor_b"]["raw"])/2
+            select["light"]["percent"] = (
+                record["light_sensor_a"]["percent"] + record["light_sensor_b"]["percent"])/2
+            select["humTemp"]["raw"] = (
+                record["hum_temp_a"]["raw"] + record["hum_temp_b"]["raw"])/2
+            select["humTemp"]["percent"] = (
+                record["hum_temp_a"]["percent"] + record["hum_temp_b"]["percent"])/2
+            select["date"] = datetime.datetime.now().strftime("%d-%m-%Y")
+            select["session"] = self.session
+            select["deviceId"] = record["deviceId"]
+            self.dataCachedRemote.append(select)
 
             record.pop("version")
             record["session"] = self.session
