@@ -29,14 +29,15 @@ class WsClient:
             print("[WsClient]: You already have an active connection")
             return
         
-        try:
-            self.connectionMode = mode.value
-            self.connection = socketio.Client()
-            self.connection.connect(self.URI[self.connectionMode],namespaces=[self.NAMESPACE])
-            print(f"[WsClient]: Your connection to {self.URI[self.connectionMode]} has been successful.")
-            self.isConnected = True
-        except:
-            print(f"[WsClient]: Unable to connect to the server at {self.URI[self.connectionMode]}")
+        while not self.isConnected:
+            try:
+                self.connectionMode = mode.value
+                self.connection = socketio.Client()
+                self.connection.connect(self.URI[self.connectionMode],namespaces=[self.NAMESPACE])
+                print(f"[WsClient]: Your connection to {self.URI[self.connectionMode]} has been successful.")
+                self.isConnected = True
+            except:
+                print(f"[WsClient]: Unable to connect to the server at {self.URI[self.connectionMode]}")
     
     def disconnect(self):
         if self.connection is None:
