@@ -4,7 +4,7 @@ import time
 
 
 class Receiver:
-    
+
     # This class is in charge of connecting and reading the serial outputs from the USB input.
     # Miseri Sense - 2023
     # By: GJZ26
@@ -30,7 +30,8 @@ class Receiver:
 
     def connect(self, autorecconect=True):
         try:
-            print(f'[Receiver]: Trying to establish connection with serial port {self.port} and baudios {self.rate}')
+            print(
+                f'[Receiver]: Trying to establish connection with serial port {self.port} and baudios {self.rate}')
             self.serialConnection = serial.Serial(
                 self.port, self.rate, timeout=0.01)
             print("[Receiver]: Connected ✅")
@@ -51,7 +52,8 @@ class Receiver:
                 print("Retrying to connect...")
                 self.connect()
                 return
-            print("[Receiver]: Unable to recover connection, please check your hardware connection.")
+            print(
+                "[Receiver]: Unable to recover connection, please check your hardware connection.")
             quit()
 
     def readSerial(self):
@@ -59,16 +61,22 @@ class Receiver:
             print('[Receiver]: No connection to the serial port has been established.')
             return None
 
-        try:            
+        try:
             if self.serialConnection.in_waiting > 0:
-                return json.loads(
-                    self.serialConnection.readline()
-                    .decode()
-                    .strip()
-                )
+                linea = None
+                raw = None
+                try:
+                    raw = self.serialConnection.readline().decode().strip()
+                    linea = json.loads(raw)
+                    return linea
+                except:
+                    print("Could not parse json")
+                    print(raw)
+                    return None
         except serial.SerialException:
             if (self.autoReconnect and self.max_reconn_attempts > 0):
-                print(f'[Receiver]: Connection to port {self.port} lost or interrupted.')
+                print(
+                    f'[Receiver]: Connection to port {self.port} lost or interrupted.')
                 print("[Receiver]: Retrying to connect...")
                 self.connect()
             return None

@@ -15,11 +15,11 @@ ws = wsclient.WsClient()
 backup = GoodMan.Backup(3,10,"remote")
 
 # Configurar la comunicación serial
-puerto = None #'COM3'  # Especifica el puerto serial correcto
+puerto = None#'COM3'  # Especifica el puerto serial correcto
 baudios = 115200
 
 def setup():
-    global reader, ws, scrn
+    global reader, ws #scrn
     ws.connect(Mode.REMOTE)
     reader = Receiver.Receiver(baudios,puerto)
     reader.connect()

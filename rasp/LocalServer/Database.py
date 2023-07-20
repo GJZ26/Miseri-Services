@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 class Storer:
 
-    URI: str = "mongodb://127.0.0.1:27017/"
+    URI: str = "mongodb://192.168.1.66:27017/"
     DATABASE_NAME: str = "Miseri"
     COLLECTIONS: str = {"data": "Data", "stats": "Stats"}
     Conection: MongoClient = None
